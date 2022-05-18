@@ -2,10 +2,6 @@ from datetime import datetime
 
 class AccessToken:
 
-    def __init__(self, token, age):
-        self.token = token
-        self.age = age
-
     @property 
     def token(self) -> str:
         return self._token
@@ -18,6 +14,10 @@ class AccessToken:
     def age(self) -> datetime:
         return self._age
 
-    @token.setter
+    @age.setter
     def age(self, age: datetime) -> datetime:
         self._age = age
+
+    def __init__(self, access_token, token_age):
+        self.token = access_token
+        self.age = token_age

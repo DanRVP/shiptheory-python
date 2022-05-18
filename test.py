@@ -1,10 +1,7 @@
 from src.Http.Api import *
 from src.Http.ShiptheoryClient import *
 
-client = ShiptheoryClient('', '')
-client.getAccessToken()
-
-api = Api(client.token.token)
+client = ShiptheoryClient('test@test.com', 'Password')
 data = {
     "reference": "I1445",
     "reference2": "International",
@@ -68,5 +65,6 @@ data = {
         "commodity_description": "Stuff n junk"
     }]
 }
-result = api.post('shipments', data)
-print(dir(result))
+
+result = client.bookShipment(data)
+print('Done')

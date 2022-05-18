@@ -1,19 +1,27 @@
+from src.Http.AccessToken import AccessToken
 from src.Http.ResponseObject import Response
 import requests
 
 class Api:
+    _BASE_URL = 'https://api.shiptheory.com/v1/'
+    _headers = {
+            'User-Agent': 'Shiptheory Python',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }
 
-    def __init__(self, token = None):
-        self.api_token = token
+    def __init__(self, token: AccessToken = None):
+        if (token and isinstance(token.token, str)):
+            self._headers['Authorization'] = 'Bearer ' + token.token
 
-    def get(self, endpoint):
+    def get(self, endpoint: str) -> Response:
         """ Sends a get request to the specified endpoint of the Shiptheory API
         :param `endpoint`: Endpoint to hit
         :return `Response`: object
         """
-        url = self.BASE_URL + endpoint        
+        url = self._BASE_URL + endpoint        
         response = Response()
-        res = requests.get(url, headers = self.headers)
+        res = requests.get(url, headers = self._headers)
         response.url = res.url
         response.code = res.status_code
 
@@ -25,14 +33,14 @@ class Api:
         response.body = res.json()
         return response
 
-    def post(self, endpoint, data):
+    def post(self, endpoint: str, data: dict) -> Response:
         """ Sends a post request to the specified endpoint of the Shiptheory API
         :param `endpoint`: Endpoint to hit
         :return `Response`: object
         """
-        url = self.BASE_URL + endpoint        
+        url = self._BASE_URL + endpoint        
         response = Response()
-        res = requests.post(url, headers=self.headers, json=data)
+        res = requests.post(url, headers=self._headers, json=data)
         response.url = res.url
         response.code = res.status_code
 
@@ -44,14 +52,14 @@ class Api:
         response.body = res.json()
         return response
 
-    def put(self, endpoint, data):
+    def put(self, endpoint: str, data: dict) -> Response:
         """ Sends a put request to the specified endpoint of the Shiptheory API
         :param `endpoint`: Endpoint to hit
         :return `Response`: object
         """
-        url = self.BASE_URL + endpoint        
+        url = self._BASE_URL + endpoint        
         response = Response()
-        res = requests.put(url, headers=self.headers, json=data)
+        res = requests.put(url, headers=self._headers, json=data)
         response.url = res.url
         response.code = res.status_code
 
@@ -62,28 +70,3 @@ class Api:
         
         response.body = res.json()
         return response
-
-    @property
-    def api_token(self):
-        return self._api_token
-
-    @api_token.setter
-    def api_token(self, token):
-        self._api_token = token
-
-    @property
-    def BASE_URL(self):
-        return 'https://api.shiptheory.com/v1/'
-
-    @property
-    def headers(self):
-        headers = {
-            'User-Agent': 'Shiptheory Python',
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-
-        if (type(self.api_token) is str):
-            headers['Authorization'] = 'Bearer ' + self.api_token
-
-        return headers
