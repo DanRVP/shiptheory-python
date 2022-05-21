@@ -15,7 +15,8 @@ class Api:
             self._headers['Authorization'] = 'Bearer ' + token.token
 
     def get(self, endpoint: str) -> Response:
-        """ Sends a get request to the specified endpoint of the Shiptheory API
+        """ 
+        Sends a get request to the specified endpoint of the Shiptheory API
         :param `endpoint`: Endpoint to hit
         :return `Response`: object
         """
@@ -33,14 +34,16 @@ class Api:
         response.body = res.json()
         return response
 
-    def post(self, endpoint: str, data: dict) -> Response:
-        """ Sends a post request to the specified endpoint of the Shiptheory API
+    def post(self, endpoint: str, data: str) -> Response:
+        """ 
+        Sends a post request to the specified endpoint of the Shiptheory API
         :param `endpoint`: Endpoint to hit
+        :param `data`: JSON string of data
         :return `Response`: object
         """
         url = self._BASE_URL + endpoint        
         response = Response()
-        res = requests.post(url, headers=self._headers, json=data)
+        res = requests.post(url, headers=self._headers, data=data)
         response.url = res.url
         response.code = res.status_code
 
@@ -52,14 +55,16 @@ class Api:
         response.body = res.json()
         return response
 
-    def put(self, endpoint: str, data: dict) -> Response:
-        """ Sends a put request to the specified endpoint of the Shiptheory API
+    def put(self, endpoint: str, data: str) -> Response:
+        """ 
+        Sends a put request to the specified endpoint of the Shiptheory API
         :param `endpoint`: Endpoint to hit
+        :param `data`: JSON string of data
         :return `Response`: object
         """
         url = self._BASE_URL + endpoint        
         response = Response()
-        res = requests.put(url, headers=self._headers, json=data)
+        res = requests.put(url, headers=self._headers, data=data)
         response.url = res.url
         response.code = res.status_code
 

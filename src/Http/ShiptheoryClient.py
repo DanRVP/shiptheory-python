@@ -2,6 +2,7 @@ from src.Http.AccessToken import AccessToken
 from src.Http.Api import Api
 import datetime
 from src.Http.ResponseObject import Response
+import json
 
 class ShiptheoryClient:
     
@@ -40,17 +41,16 @@ class ShiptheoryClient:
 
     def getAccessToken(self) -> bool:
         """ Gets an access token from shiptheory via post request. """
-        data = {
+        data = json.dumps({
             'email': self.username,
             'password': self.password,
-        }
+        })
 
         api = Api()
         response = api.post('token', data)
 
         if (response.code == 200):
             token = response.body['data']['token']
-            print(token)
             self.token = AccessToken(token, datetime.datetime.now())
             return True
         
@@ -74,7 +74,7 @@ class ShiptheoryClient:
 
         return mins_diff > 58
 
-    def bookShipment(self, data: dict) -> Response:
+    def bookShipment(self, data: str) -> Response:
         """ 
         Book in a shipment with Shiptheory.
         @param dict `data` Data to book with.
@@ -118,7 +118,7 @@ class ShiptheoryClient:
         api = Api(self.token)
         return api.get('shipments/search' + query_params)
 
-    def createReturnLabel(self, data: dict) -> Response:
+    def createReturnLabel(self, data: str) -> Response:
         """ 
         Create a new return label.
         @param dict `data` Data to book with.
@@ -160,7 +160,7 @@ class ShiptheoryClient:
         api = Api(self.token)
         return api.get('packages/sizes' + query_params)
 
-    def addProduct(self, data: dict) -> Response:
+    def addProduct(self, data: str) -> Response:
         """ 
         Add a new product.
         @param dict `data` Data to add product with.
@@ -171,7 +171,7 @@ class ShiptheoryClient:
         api = Api(self.token)
         return api.post('products', data)
 
-    def updateProduct(self, sku: str, data: dict) -> Response:
+    def updateProduct(self, sku: str, data: str) -> Response:
         """ 
         Uppdate a product.
         @param str `sku` Unique product sku.
