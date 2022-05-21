@@ -92,11 +92,11 @@ class ShipmentDetail(ClientObject):
         self._sales_source = sales_source    
 
     @property 
-    def ship_date(self) -> datetime:
+    def ship_date(self) -> str:
         return self._ship_date
 
     @ship_date.setter
-    def ship_date(self, ship_date: datetime):
+    def ship_date(self, ship_date: str):
         self._ship_date = ship_date 
 
     @property 
