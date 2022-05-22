@@ -2,6 +2,7 @@ from src.Http.Api import *
 from src.Http.ShiptheoryClient import *
 from src.Objects.Product import Product
 from src.Objects.Recipient import Recipient
+from src.Objects.SearchShipmentQuery import SearchShipmentQuery
 from src.Objects.Sender import Sender
 from src.Objects.Shipment import Shipment
 from src.Objects.ShipmentDetail import ShipmentDetail
@@ -69,5 +70,15 @@ shipment.sender = sender
 shipment.products = [product]
 
 data = shipment.toJson()
-result = client.bookShipment(data)
+# result = client.bookShipment(data)
 print('Done')
+
+list_fields = {
+    'created_from': '2022-04-01',
+    'created_to': '2022-04-30',
+    'include_products': 1,
+}
+query = SearchShipmentQuery(list_fields)
+params = query.toQueryParams()
+result = client.searchShipment(params)
+print(params)
