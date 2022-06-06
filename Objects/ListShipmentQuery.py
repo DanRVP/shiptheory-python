@@ -1,11 +1,10 @@
 
-from src.Objects.ShipmentQuery import ShipmentQuery
+from Objects.ShipmentQuery import ShipmentQuery
 
-class SearchShipmentQuery(ShipmentQuery):
+class ListShipmentQuery(ShipmentQuery):
     extra_valid_fields = [
-        'include_products',
-        'created_from',
-        'created_to',
+        'created',
+        'modified',
     ]
 
     def __init__(self, data: dict = None) -> None:

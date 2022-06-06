@@ -1,4 +1,4 @@
-from src.Objects.SharedProduct import SharedProduct
+from Objects.SharedProduct import SharedProduct
 
 class Product(SharedProduct):
 

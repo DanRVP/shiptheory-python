@@ -1,4 +1,4 @@
-from src.Objects.ClientObject import ClientObject
+from Objects.ClientObject import ClientObject
 
 class SharedProduct(ClientObject):
     

@@ -1,4 +1,4 @@
-from src.Objects.Address import Address
+from Objects.Address import Address
 
 class Recipient(Address):
     

@@ -1,5 +1,5 @@
-from src.Http.AccessToken import AccessToken
-from src.Http.ResponseObject import Response
+from Http.AccessToken import AccessToken
+from Http.ResponseObject import Response
 import requests
 
 class Api:
@@ -28,7 +28,6 @@ class Api:
 
         if (response.code != 200):
             response.error = res.json()
-            print(vars(response))
             return response
         
         response.body = res.json()
@@ -49,7 +48,6 @@ class Api:
 
         if (response.code != 200):
             response.error = res.json()
-            print(vars(response))
             return response
         
         response.body = res.json()
@@ -70,7 +68,6 @@ class Api:
 
         if (response.code != 200):
             response.error = res.json()
-            print(vars(response))
             return response
         
         response.body = res.json()

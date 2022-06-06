@@ -1,14 +1,18 @@
-from src.Http.Api import *
-from src.Http.ShiptheoryClient import *
-from src.Objects.Product import Product
-from src.Objects.Recipient import Recipient
-from src.Objects.SearchShipmentQuery import SearchShipmentQuery
-from src.Objects.Sender import Sender
-from src.Objects.Shipment import Shipment
-from src.Objects.ShipmentDetail import ShipmentDetail
-from src.Objects.TaxNumber import *
+from Http.Api import *
+from Http.ShiptheoryClient import *
+from Objects.ListShipmentQuery import ListShipmentQuery
+from Objects.PackageQuery import PackageQuery
+from Objects.Product import Product
+from Objects.ProductQuery import ProductQuery, ProductSortParameters
+from Objects.Recipient import Recipient
+from Objects.ReturnLabel import ReturnLabel
+from Objects.SearchShipmentQuery import SearchShipmentQuery
+from Objects.Sender import Sender
+from Objects.Shipment import Shipment
+from Objects.ShipmentDetail import ShipmentDetail
+from Objects.TaxNumber import *
 
-client = ShiptheoryClient('test@test.com', 'Password')
+client = ShiptheoryClient('dan.rogers@shiptheory.com', '2ETzeE!zAqC4xTY')
 
 shipment_detail = ShipmentDetail()
 shipment_detail.weight = 1
@@ -70,9 +74,15 @@ shipment.sender = sender
 shipment.products = [product]
 
 data = shipment.toJson()
-# result = client.bookShipment(data)
+result = client.bookShipment(data)
 print('Done')
 
+
+# View a shipment
+result = client.viewShipment('Test1234')
+print(vars(result))
+
+# Search shipments
 list_fields = {
     'created_from': '2022-04-01',
     'created_to': '2022-04-30',
@@ -81,4 +91,76 @@ list_fields = {
 query = SearchShipmentQuery(list_fields)
 params = query.toQueryParams()
 result = client.searchShipment(params)
-print(params)
+print(vars(result))
+
+# List shipments
+list_fields = {
+    'channel_name': 'Api',
+    'status': 'Ignored',
+    'limit': 1
+}
+query = ListShipmentQuery(list_fields)
+params = query.toQueryParams()
+result = client.listShipment(params)
+print(vars(result))
+
+# Search for packages
+list_fields = {
+    'length': 25,
+    'width': 25,
+    'height': 25,
+}
+query = PackageQuery(list_fields)
+params = query.toQueryParams()
+result = client.getPackageSizes(params)
+print(vars(result))
+
+# List services
+result = client.getOutgoingDeliveryServices()
+print(vars(result))
+
+# Create a return label
+label = ReturnLabel()
+label.outgoing_reference = 'Test12345'
+label.delivery_postcode = 'BS4 3EH'
+label.return_service = 1
+label.expiry = '2023-05-30'
+result = client.createReturnLabel(label.toJson())
+print(vars(result))
+
+# Create a new product
+product = Product()
+product.sku = 'APIProd1'
+product.name = 'API Test Product'
+product.price = 1.99
+product.weight = 1.25
+product.barcode = '123456789'
+product.commodity_code = '8443991000'
+product.commodity_manucountry = 'GB'
+product.commodity_description = 'This is a test product'
+product.commodity_composition = 'Electronic components'
+product.length = 25
+product.width = 11.55
+product.height = 4.66
+result = client.addProduct(product.toJson())
+print(vars(result))
+
+# View a product
+result = client.viewProduct('APIProd1')
+print(vars(result))
+
+# Update a product
+product = Product()
+product.price = 5.99
+result = client.updateProduct('API-Product-1', product.toJson())
+print(vars(result))
+
+# List for products
+list_fields = {
+    'sort': ProductSortParameters.SKU,
+    'limit': 5,
+}
+query = ProductQuery(list_fields)
+params = query.toQueryParams()
+result = client.listProducts(params)
+print(vars(result))

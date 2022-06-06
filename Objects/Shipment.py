@@ -1,7 +1,7 @@
-from src.Objects.ClientObject import ClientObject
-from src.Objects.ShipmentDetail import ShipmentDetail
-from src.Objects.Recipient import Recipient
-from src.Objects.Sender import Sender
+from Objects.ClientObject import ClientObject
+from Objects.ShipmentDetail import ShipmentDetail
+from Objects.Recipient import Recipient
+from Objects.Sender import Sender
 
 class Shipment(ClientObject):
 

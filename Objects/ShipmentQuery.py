@@ -1,4 +1,4 @@
-from src.Objects.QueryObject import QueryObject
+from Objects.QueryObject import QueryObject
 
 class ShipmentQuery(QueryObject):
     valid_fields = [
