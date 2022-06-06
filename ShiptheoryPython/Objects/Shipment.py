@@ -1,7 +1,7 @@
-from Objects.ClientObject import ClientObject
-from Objects.ShipmentDetail import ShipmentDetail
-from Objects.Recipient import Recipient
-from Objects.Sender import Sender
+from ShiptheoryPython.Objects.ClientObject import ClientObject
+from ShiptheoryPython.Objects.ShipmentDetail import ShipmentDetail
+from ShiptheoryPython.Objects.Recipient import Recipient
+from ShiptheoryPython.Objects.Sender import Sender
 
 class Shipment(ClientObject):
 

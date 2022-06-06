@@ -1,7 +1,7 @@
-from Http.AccessToken import AccessToken
-from Http.Api import Api
+from ShiptheoryPython.Http.AccessToken import AccessToken
+from ShiptheoryPython.Http.Api import Api
 import datetime
-from Http.ResponseObject import Response
+from ShiptheoryPython.Http.ResponseObject import Response
 import json
 
 class ShiptheoryClient:

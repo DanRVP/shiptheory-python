@@ -1,4 +1,4 @@
-from Objects.SharedProduct import SharedProduct
+from ShiptheoryPython.Objects.SharedProduct import SharedProduct
 
 class Product(SharedProduct):
 

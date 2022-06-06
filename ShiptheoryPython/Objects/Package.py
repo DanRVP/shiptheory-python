@@ -1,4 +1,4 @@
-from Objects.ClientObject import ClientObject
+from ShiptheoryPython.Objects.ClientObject import ClientObject
 
 class Package(ClientObject):
     

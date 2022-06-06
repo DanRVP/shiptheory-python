@@ -1,4 +1,4 @@
-from Objects.Address import Address
+from ShiptheoryPython.Objects.Address import Address
 
 class Recipient(Address):
     

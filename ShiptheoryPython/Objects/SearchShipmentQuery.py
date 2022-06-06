@@ -1,5 +1,5 @@
 
-from Objects.ShipmentQuery import ShipmentQuery
+from ShiptheoryPython.Objects.ShipmentQuery import ShipmentQuery
 
 class SearchShipmentQuery(ShipmentQuery):
     extra_valid_fields = [

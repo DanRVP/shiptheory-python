@@ -1,5 +1,5 @@
-from Http.AccessToken import AccessToken
-from Http.ResponseObject import Response
+from ShiptheoryPython.Http.AccessToken import AccessToken
+from ShiptheoryPython.Http.ResponseObject import Response
 import requests
 
 class Api:

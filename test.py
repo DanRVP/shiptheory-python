@@ -1,18 +1,18 @@
-from Http.Api import *
-from Http.ShiptheoryClient import *
-from Objects.ListShipmentQuery import ListShipmentQuery
-from Objects.PackageQuery import PackageQuery
-from Objects.Product import Product
-from Objects.ProductQuery import ProductQuery, ProductSortParameters
-from Objects.Recipient import Recipient
-from Objects.ReturnLabel import ReturnLabel
-from Objects.SearchShipmentQuery import SearchShipmentQuery
-from Objects.Sender import Sender
-from Objects.Shipment import Shipment
-from Objects.ShipmentDetail import ShipmentDetail
-from Objects.TaxNumber import *
+from ShiptheoryPython.Http.Api import *
+from ShiptheoryPython.Http.ShiptheoryClient import *
+from ShiptheoryPython.Objects.ListShipmentQuery import ListShipmentQuery
+from ShiptheoryPython.Objects.PackageQuery import PackageQuery
+from ShiptheoryPython.Objects.Product import Product
+from ShiptheoryPython.Objects.ProductQuery import ProductQuery, ProductSortParameters
+from ShiptheoryPython.Objects.Recipient import Recipient
+from ShiptheoryPython.Objects.ReturnLabel import ReturnLabel
+from ShiptheoryPython.Objects.SearchShipmentQuery import SearchShipmentQuery
+from ShiptheoryPython.Objects.Sender import Sender
+from ShiptheoryPython.Objects.Shipment import Shipment
+from ShiptheoryPython.Objects.ShipmentDetail import ShipmentDetail
+from ShiptheoryPython.Objects.TaxNumber import *
 
-client = ShiptheoryClient('dan.rogers@shiptheory.com', '2ETzeE!zAqC4xTY')
+client = ShiptheoryClient('test@test.com', 'Password')
 
 shipment_detail = ShipmentDetail()
 shipment_detail.weight = 1
