@@ -1,6 +1,6 @@
-# Shiptheory Python API Client
+# Shiptheory API library for Python
 
-API client to communicate with the Shiptheory API.
+A PHP version exists: [Shiptheory API library for PHP](https://github.com/DanRVP/shiptheory-php)
 
 The workflow is similar for all endpoints, queries and bookings. Examples exist in the file `test.py`. If you want to see all endpoint methods, then look in `ShiptheoryPython\Http\ShiptheoryClient.py`.
 
